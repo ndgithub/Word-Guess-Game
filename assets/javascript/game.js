@@ -7,6 +7,7 @@ var losses = 0;
 
 function onStart() {
     updateDisplay();
+    document.addEventListener("keyup", onGuess);
 }
 
 function getGuessesAllowed() {
@@ -14,15 +15,10 @@ function getGuessesAllowed() {
 }
 
 function onGuess(event) {
-    // get the key pressed
     var keyPressed = event.key.toLowerCase();
     if (isLetterOnly(keyPressed)) {
-
-        // If the letteronly keyPressd is not on the guessed list.
         if (guessed.indexOf(keyPressed) === -1) {
-            //  add the keyPressed to the guessed lit
             guessed.push(keyPressed);
-            // create a string
             var gameboardWord = currentWordLetters().map(function (letter) {
                 if (guessed.indexOf(letter) === -1) {
                     return "_";
@@ -79,4 +75,3 @@ function currentWordLetters() {
 }
 
 onStart();
-document.addEventListener("keyup", onGuess);
