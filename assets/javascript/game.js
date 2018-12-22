@@ -1,25 +1,23 @@
-// Game object
-
 var words = ["one", "two", "three"];
 var currentWordIndex = 0;
 var attempts = 0;
 var guessed = [];
+var wins = 0;
+var losses = 0;
 
 function onStart() {
-    document.getElementById("game_board").innerHTML = words[0].split("").map(() => "_").join("");
+    updateDisplay();
 }
 function getGuessesAllowed() {
     return (words[currentWordIndex].length * 3);
 }
-function logStuff(event) {
-    console.log(event.key);
-}
+
 function onGuess(event) {
     // get the key pressed
-    var keyPressed = event.key;
+    var keyPressed = event.key.toLowerCase();
     if (isLetterOnly(keyPressed)) {
 
-        // If the letteronlykeyPressd is not on the guessed list.
+        // If the letteronly keyPressd is not on the guessed list.
         if (guessed.indexOf(keyPressed) === -1) {
             //  add the keyPressed to the guessed lit
             guessed.push(keyPressed);
@@ -39,7 +37,11 @@ function onGuess(event) {
                 return (list + letter.toUpperCase() + " ");
             }, "");
 
-            if (getGuessesAllowed() - attempts === 0 || gameboardWord.indexOf("_") === -1) {
+            if (getGuessesAllowed() - attempts === 0) {
+                losses++;
+                goToNextWord();
+            } else if (gameboardWord.indexOf("_") === -1) {
+                wins++;
                 goToNextWord();
             }
 
@@ -56,7 +58,6 @@ function isLetterOnly(character) {
         return false;
     }
     var checker = /^[a-z]+$/i.test(character);
-    console.log("checker is: " + checker);
     return checker;
 
 }
@@ -64,12 +65,19 @@ function isLetterOnly(character) {
 function goToNextWord() {
     currentWordIndex++;
     attempts = 0;
-    document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
     guessed = [];
+    updateDisplay();
+  
+}
+
+function updateDisplay() {
     document.getElementById("guessed").innerHTML = guessed.reduce(function (list, letter) {
         return (list + letter.toUpperCase() + " ");
     }, "");
     document.getElementById("game_board").innerHTML = words[currentWordIndex].split("").map(() => "_").join("");
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("losses").innerHTML = losses;
+    document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
 }
 
 function currentWordLetters() {
@@ -77,10 +85,4 @@ function currentWordLetters() {
 }
 
 onStart();
-console.log("hi");
-console.log(currentWordLetters().length);
-
-
-document.getElementById("word").innerHTML = words[currentWordIndex];
-console.log(currentWordLetters()[2]);
 document.addEventListener("keyup", onGuess);
