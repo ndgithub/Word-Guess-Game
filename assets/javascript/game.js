@@ -16,7 +16,6 @@ function onGuess(event) {
     // get the key pressed
     var keyPressed = event.key.toLowerCase();
     if (isLetterOnly(keyPressed)) {
-
         // If the letteronly keyPressd is not on the guessed list.
         if (guessed.indexOf(keyPressed) === -1) {
             //  add the keyPressed to the guessed lit
@@ -32,7 +31,7 @@ function onGuess(event) {
             );
             attempts++;
             document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
-            document.getElementById("game_board").innerHTML = gameboardWord.join("");
+            document.getElementById("game_board").innerHTML = gameboardWord.join(" ");
             document.getElementById("guessed").innerHTML = guessed.reduce(function (list, letter) {
                 return (list + letter.toUpperCase() + " ");
             }, "");
@@ -44,11 +43,6 @@ function onGuess(event) {
                 wins++;
                 goToNextWord();
             }
-
-
-            console.log("keyPressed is: " + keyPressed)
-            console.log("guesses: " + guessed);
-            console.log(gameboardWord.join(""));
         }
     }
 }
@@ -67,14 +61,14 @@ function goToNextWord() {
     attempts = 0;
     guessed = [];
     updateDisplay();
-  
+
 }
 
 function updateDisplay() {
     document.getElementById("guessed").innerHTML = guessed.reduce(function (list, letter) {
         return (list + letter.toUpperCase() + " ");
     }, "");
-    document.getElementById("game_board").innerHTML = words[currentWordIndex].split("").map(() => "_").join("");
+    document.getElementById("game_board").innerHTML = words[currentWordIndex].split("").map(() => "_ ").join("");
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("losses").innerHTML = losses;
     document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
