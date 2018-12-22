@@ -8,6 +8,7 @@ var losses = 0;
 function onStart() {
     updateDisplay();
 }
+
 function getGuessesAllowed() {
     return (words[currentWordIndex].length * 3);
 }
@@ -16,6 +17,7 @@ function onGuess(event) {
     // get the key pressed
     var keyPressed = event.key.toLowerCase();
     if (isLetterOnly(keyPressed)) {
+
         // If the letteronly keyPressd is not on the guessed list.
         if (guessed.indexOf(keyPressed) === -1) {
             //  add the keyPressed to the guessed lit
@@ -53,7 +55,6 @@ function isLetterOnly(character) {
     }
     var checker = /^[a-z]+$/i.test(character);
     return checker;
-
 }
 
 function goToNextWord() {
@@ -61,7 +62,6 @@ function goToNextWord() {
     attempts = 0;
     guessed = [];
     updateDisplay();
-
 }
 
 function updateDisplay() {
