@@ -1,4 +1,4 @@
-var words = ["MERCEDES", "PORCSCHE", "FERRARI"];
+var words = ["TEXAS", "CALIFORNIA", "IDAHO", "WYOMING"];
 var currentWordIndex = 0;
 var attempts = 0;
 var guessed = [];
@@ -8,6 +8,7 @@ var losses = 0;
 function onStart() {
     updateDisplay();
     document.addEventListener("keyup", onGuess);
+    document.getElementById("title").focus();
 }
 
 function onGuess(event) {
@@ -16,6 +17,7 @@ function onGuess(event) {
         if (guessed.indexOf(keyPressed) === -1) {
             guessed.push(keyPressed);
             attempts++;
+            updateDisplay();
             if (isRoundLost()) {
                 losses++;
                 goToNextWord();
@@ -25,7 +27,7 @@ function onGuess(event) {
                 goToNextWord();
                 return;
             }
-            updateDisplay();
+            
         }
     }
 }
@@ -70,7 +72,6 @@ function updateDisplay() {
         return (list + letter + " ");
     }, "");
     showGameBoard();
-    //document.getElementById("game_board").innerHTML = getGameboardWord().join("&nbsp&nbsp&nbsp&nbsp");
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("losses").innerHTML = losses;
     document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
@@ -86,6 +87,10 @@ function showGameBoard() {
         var newDiv = document.createElement("div");
         newDiv.setAttribute("class", "game_board_letter");
         newDiv.innerHTML = letter;
+        if (letter !== "&nbsp") {
+            newDiv.setAttribute("class", "no_border");
+
+        }
         container.appendChild(newDiv);
         
         
@@ -97,9 +102,10 @@ function currentWordLetters() {
 }
 
 function getGuessesAllowed() {
-    return (words[currentWordIndex].length * 3);
+    return (10);
 }
 
 
 
 onStart();
+console.log(window.innerHeight / 2);
