@@ -1,4 +1,4 @@
-var words = ["honda", "two", "three"];
+var words = ["MERCEDES", "PORCSCHE", "FERRARI"];
 var currentWordIndex = 0;
 var attempts = 0;
 var guessed = [];
@@ -11,7 +11,7 @@ function onStart() {
 }
 
 function onGuess(event) {
-    var keyPressed = event.key.toLowerCase();
+    var keyPressed = event.key.toUpperCase();
     if (isLetterOnly(keyPressed)) {
         if (guessed.indexOf(keyPressed) === -1) {
             guessed.push(keyPressed);
@@ -32,7 +32,7 @@ function onGuess(event) {
 function getGameboardWord() {
     return (currentWordLetters().map(function (letter) {
         if (guessed.indexOf(letter) === -1) {
-            return "_";
+            return "&nbsp";
         } else {
             return letter;
         }
@@ -52,14 +52,14 @@ function isRoundLost() {
 }
 
 function isRoundWon() {
-    return (getGameboardWord().indexOf("_") === -1);
+    return (getGameboardWord().indexOf("&nbsp") === -1);
 }
 
 function isLetterOnly(character) {
     if (character.length !== 1) {
         return false;
     }
-    var checker = /^[a-z]+$/i.test(character);
+    var checker = /^[A-Z]+$/i.test(character);
     return checker;
 }
 
@@ -67,12 +67,29 @@ function isLetterOnly(character) {
 
 function updateDisplay() {
     document.getElementById("guessed").innerHTML = guessed.reduce(function (list, letter) {
-        return (list + letter.toUpperCase() + " ");
+        return (list + letter + " ");
     }, "");
-    document.getElementById("game_board").innerHTML = getGameboardWord().join("&nbsp");
+    showGameBoard();
+    //document.getElementById("game_board").innerHTML = getGameboardWord().join("&nbsp&nbsp&nbsp&nbsp");
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("losses").innerHTML = losses;
     document.getElementById("guesses_remaining").innerHTML = getGuessesAllowed() - attempts;
+}
+
+function showGameBoard() {
+    var container = document.getElementById('game_board_container');
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    console.log(getGameboardWord());
+    getGameboardWord().forEach(function (letter) {
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "game_board_letter");
+        newDiv.innerHTML = letter;
+        container.appendChild(newDiv);
+        
+        
+    });
 }
 
 function currentWordLetters() {

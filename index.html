@@ -5,17 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
+
+    <title>Word Guess</title>
 
 </head>
 
 <body>
-    <div id="welcome">Press any letter to get started!</div>
-    <div id="game_board_container">Game Board: <span id="game_board"></span></div>
-    <div id="wins_container">Wins: <span id="wins"></span></div>
-    <div id="losses_container">Losses: <span id="losses"></span></div>
-    <div id="guessed_container">Guessed: <span id="guessed"></span></div>
-    <div id="guesses_remaining_container">Guesses Remaining: <span id="guesses_remaining"></span> </div>
+    <h1 id="title">WORD GUESS</h1>
+    <div id="welcome">- Press letters to play! -</div>
+
+    <div id="game_board_container"><span id="game_board"></span></div>
+    
+    <div id="guessed_container"><span id="guessed"></span></div>
+    <div id="win_loss_container">Wins: <span id="wins"></span> Losses: <span id="losses"></span></div>
+    <div id="guesses_remaining_container"><span id="guesses_remaining"></span> </div>
 
     <script src="assets/javascript/game.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

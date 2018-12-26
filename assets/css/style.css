@@ -1,0 +1,56 @@
+body {
+    font-family: 'Roboto Slab', serif;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 56px;
+    font-weight: 300;
+    margin-bottom: 4px;
+}
+
+#welcome {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    color: #676767;
+    margin-bottom: 56px;
+}
+
+#game_board_container {
+    text-align: center;
+    
+    margin-bottom: 56px;
+}
+
+.game_board_letter {
+    display: inline-block;
+    border-bottom: 2px solid #bcbcbc;
+    margin: 16px;
+    width: 72px;
+    height: 72px;
+    font-size: 72px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+
+#guessed_container {
+    font-size: 20px;
+    text-align: center;
+    height: 20px;
+    padding-right:8px;
+    padding-left:8px;
+    border-bottom:1px;
+}
+
+#win_loss_container {
+    text-align: center;
+}
+
+#guesses_remaining_container {
+    text-align: center;
+    height: 20px;
+}
