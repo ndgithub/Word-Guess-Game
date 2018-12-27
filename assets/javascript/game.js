@@ -8,7 +8,7 @@ var losses = 0;
 function onStart() {
     updateDisplay();
     document.addEventListener("keyup", onGuess);
-    document.getElementById("box").focus();
+    
 }
 
 function onGuess(event) {
