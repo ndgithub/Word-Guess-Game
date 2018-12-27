@@ -8,7 +8,7 @@ var losses = 0;
 function onStart() {
     updateDisplay();
     document.addEventListener("keyup", onGuess);
-    document.getElementById("title").focus();
+    document.getElementById("box").focus();
 }
 
 function onGuess(event) {
@@ -27,7 +27,7 @@ function onGuess(event) {
                 goToNextWord();
                 return;
             }
-            
+
         }
     }
 }
@@ -92,8 +92,8 @@ function showGameBoard() {
 
         }
         container.appendChild(newDiv);
-        
-        
+
+
     });
 }
 
