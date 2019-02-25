@@ -19,7 +19,6 @@ body {
 
 #game_board_container {
     text-align: center;
-    
     margin-bottom: 56px;
 }
 
@@ -44,8 +43,6 @@ body {
     font-weight: bolder;
     text-align: center;
 }
-
-
 
 #guessed_container {
     font-size: 20px;

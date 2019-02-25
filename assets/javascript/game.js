@@ -8,7 +8,6 @@ var losses = 0;
 function onStart() {
     updateDisplay();
     document.addEventListener("keyup", onGuess);
-    
 }
 
 function onGuess(event) {
@@ -89,11 +88,8 @@ function showGameBoard() {
         newDiv.innerHTML = letter;
         if (letter !== "&nbsp") {
             newDiv.setAttribute("class", "no_border");
-
         }
         container.appendChild(newDiv);
-
-
     });
 }
 
@@ -105,7 +101,4 @@ function getGuessesAllowed() {
     return (10);
 }
 
-
-
 onStart();
-console.log(window.innerHeight / 2);
