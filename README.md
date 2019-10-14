@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="50%" src="assets/images/word-guess-screenshot.png">
+  <img width="75%" src="assets/images/word-guess-screenshot.png">
 </p>
 
 # Word-Guess-Game
