@@ -1,7 +1,7 @@
-var words = ["TEXAS", "CALIFORNIA", "IDAHO", "WYOMING"];
+var words = ["MICHAEL","JIM","DWIGHT","ANGELA","RYAN","CREED","KELLY",];
 var currentWordIndex = 0;
 var attempts = 0;
-var guessed = [];
+var guessedLetters = [];
 var wins = 0;
 var losses = 0;
 
@@ -13,8 +13,8 @@ function onStart() {
 function onGuess(event) {
     var keyPressed = event.key.toUpperCase();
     if (isLetterOnly(keyPressed)) {
-        if (guessed.indexOf(keyPressed) === -1) {
-            guessed.push(keyPressed);
+        if (guessedLetters.indexOf(keyPressed) === -1) {
+            guessedLetters.push(keyPressed);
             attempts++;
             updateDisplay();
             if (isRoundLost()) {
@@ -32,7 +32,7 @@ function onGuess(event) {
 }
 function getGameboardWord() {
     return (currentWordLetters().map(function (letter) {
-        if (guessed.indexOf(letter) === -1) {
+        if (guessedLetters.indexOf(letter) === -1) {
             return "&nbsp";
         } else {
             return letter;
@@ -44,7 +44,7 @@ function getGameboardWord() {
 function goToNextWord() {
     currentWordIndex++;
     attempts = 0;
-    guessed = [];
+    guessedLetters = [];
     updateDisplay();
 }
 
@@ -65,9 +65,8 @@ function isLetterOnly(character) {
 }
 
 
-
 function updateDisplay() {
-    document.getElementById("guessed").innerHTML = guessed.reduce(function (list, letter) {
+    document.getElementById("guessed").innerHTML = guessedLetters.reduce(function (list, letter) {
         return (list + letter + " ");
     }, "");
     showGameBoard();
